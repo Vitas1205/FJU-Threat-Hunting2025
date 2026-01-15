@@ -14,9 +14,10 @@
 * **資安工具鏈對接**：完成工具集（Toolbox）的動態載入，賦予 AI 助理直接檢索端點狀態與安全日誌之能力。
 
 #### 實作驗證截圖
-步驟說明,實作截圖證明
-Step 1: MCP 環境配置驗證展示 claude_desktop_config.json 的參數配置。,"<img src=""mcp_config.png"" width=""400"">"
-Step 2: AI 工具對接成功Claude 成功掛載 Wazuh 專屬資安工具集。,"<img src=""mcp_connection.png"" width=""400"">"
+| 步驟說明 | 實作截圖證明 |
+| :--- | :--- |
+| **Step 1: MCP 環境配置驗證展示 claude_desktop_config.json 的參數配置** |![mcp 設定](mcp_config.png) |
+| **Step 2: AI 工具對接成功Claude 成功掛載 Wazuh 專屬資安工具集** |![mcp 連線](mcp_connection.png) |
 
 ---
 
