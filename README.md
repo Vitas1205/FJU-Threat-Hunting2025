@@ -34,4 +34,11 @@
 
 3.**數據驗證**：透過 tail -f /var/ossec/logs/archives/archives.log 觀察即時噴發的日誌流，確保防火牆阻擋 (Drop) 與系統異動事件已被 Wazuh 完整擷取。
 
-**Wazuh Manager 配置**：為了接收來自 pfSense 的日誌，我們在 /var/ossec/etc/ossec.conf 中加入了 Syslog 遠端接收設定。詳情請參閱 ossec_manager_syslog.xml。在實作過程中，透過 tcpdump 成功攔截封包，證實數據已跨越虛擬網路邊界。
+#### 實作驗證截圖
+
+步驟,說明,截圖
+Step 1,pfSense 遠端日誌發送設定：配置 Syslog 格式 (RFC 5424) 並指向 Manager IP。,"<img src=""pfsense_config.png"" width=""400"">"
+Step 2,Wazuh Manager 設定檔驗證：確認 ossec.conf 已正確開啟 514 接收埠與存檔開關。,"<img src=""wazuh_config_verify.png"" width=""400"">"
+Step 3,tcpdump 即時封包攔截驗證：於容器內即時捕捉 UDP 514 埠位的原始數據流。,"<img src=""tcpdump_verify.png"" width=""400"">"
+
+**技術筆記**：在實作過程中，透過 tcpdump -i any udp port 514 -A 成功攔截到來自 pfSense 的封包，證實數據已跨越虛擬網路邊界抵達 Manager 容器。相關 XML 配置細節請參閱本倉庫之 ossec_manager_syslog.xml。
