@@ -1,0 +1,8 @@
+<ossec_config>
+  <remote>
+    <connection>syslog</connection>
+    <port>514</port>
+    <protocol>udp</protocol>
+    <allowed-ips>0.0.0.0/0</allowed-ips>
+  </remote>
+</ossec_config>
