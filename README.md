@@ -5,12 +5,18 @@
 ### **1. MCP Server for Wazuh - Threat Hunting 展示**
 本部分展示如何透過 **Claude Desktop** 整合 **MCP Server**，實現以自然語言進行資安管理。
 
-#### **核心實作紀錄**
-* **API 連線驗證**：成功透過 `wazuh-wui` 帳號獲取 Wazuh API Token。
-* **Indexer 驗證**：經測試，Indexer (Port 9200) 已可正常回傳 JSON 數據。
+#### 核心實作紀錄
 
-#### **功能展示**
-* 成功透過對話列出 Agents 列表，確認 **Agent 003 (Windows 11)** 處於 **Active** 狀態。
+* **環境架構配置**：開發並完成 claude_desktop_config.json 的環境變數定義，將 Wazuh MCP Server 成功封裝至 Claude 運行環境。
+
+* **安全認證整合**：建立基於 API Token 的認證機制，確保 LLM 與 Wazuh Manager 之間的通訊符合最小權限原則（Principle of Least Privilege）。
+
+* **資安工具鏈對接**：完成工具集（Toolbox）的動態載入，賦予 AI 助理直接檢索端點狀態與安全日誌之能力。
+
+#### 實作驗證截圖
+步驟說明,實作截圖證明
+Step 1: MCP 環境配置驗證展示 claude_desktop_config.json 的參數配置。,"<img src=""mcp_config.png"" width=""400"">"
+Step 2: AI 工具對接成功Claude 成功掛載 Wazuh 專屬資安工具集。,"<img src=""mcp_connection.png"" width=""400"">"
 
 ---
 
