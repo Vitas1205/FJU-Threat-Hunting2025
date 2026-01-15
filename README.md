@@ -19,6 +19,8 @@
 | **Step 1: MCP 環境配置驗證展示 claude_desktop_config.json 的參數配置** |![mcp 設定](mcp_config.png) |
 | **Step 2: AI 工具對接成功Claude 成功掛載 Wazuh 專屬資安工具集** |![mcp 連線](mcp_connection.png) |
 
+**技術備註**：本實作確保了 AI 助理能即時獲取 Agent 狀態與安全警報，大幅提升了 Threat Hunting 的反應速度與分析深度。
+
 ---
 
 ### 2. pfSense 與 Wazuh 整合實作
