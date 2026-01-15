@@ -43,3 +43,34 @@
 | **Step 3: tcpdump 即時封包攔截驗證** | ![tcpdump 驗證](tcpdump_verify.png) |
 
 **技術筆記**：在實作過程中，透過 tcpdump -i any udp port 514 -A 成功攔截到來自 pfSense 的封包，證實數據已跨越虛擬網路邊界抵達 Manager 容器。相關 XML 配置細節請參閱本倉庫之 ossec_manager_syslog.xml。
+
+---
+
+
+### 3. 進階威脅分析與 AI 輔助偵測 (Advanced Threat Analysis)
+
+本章節探討如何利用 ET-BERT 模型 與 大語言模型 (LLM) 針對 pfSense 收集到的加密流量與惡意活動進行深度分析。
+
+#### 加密流量分析：ET-BERT 與 遠端工具偵測
+
+針對 TeamViewer、AnyDesk 等遠端控制軟體產生的加密流量，傳統過濾器難以識別其惡意意圖。
+
+* **ET-BERT 應用**：透過 Pre-train (於海量無標籤流量學習) 與 Fine-tuned (針對特定軟體流量微調) 兩階段，實現對加密流量的精準分類。
+
+* **實作意義**：本專案透過 pfSense 擷取通訊流量並對接至 Wazuh 平台，驗證了在加密環境下依然具備威脅可視性（Visibility）。
+
+#### 惡意行為識別：Ransomware、PCAP 與 Cobalt Strike
+
+* **Cobalt Strike 偵測**：針對其 Beaconing 行為 (心跳連線)，利用 LLM 分析特定的 HTTP Header 特徵與流量規律。
+
+* **勒索軟體分析**：利用 PCAP 流量包進行特徵提取，針對勒索軟體在執行加密前的 橫向移動 (Lateral Movement) 行為進行預警。
+
+#### LLM 效能對比與輔助分析 (LLM Compare)
+
+本實驗對比了 GPT-4、Claude 3 與 Gemini 在資安領域的處理表現：
+
+* **日誌解析**：LLM 展現強大語義理解能力，能將 pfSense filterlog 的原始標籤轉化為直觀的攻擊意圖描述。
+
+* **偵測建議**：AI 可根據流量特徵自動生成 Wazuh 偵測規則 (Ruleset)，大幅縮短從威脅發現到防禦部署的反應時間。
+
+**實作驗證結論**：透過 pfSense 成功將數據導出至 Wazuh，結合 AI 分析技術，可大幅提升對 Encrypted Traffic 的分析深度，達成從「流量攔截」到「智能研判」的資安防禦閉環。
